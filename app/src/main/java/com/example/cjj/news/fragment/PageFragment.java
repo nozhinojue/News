@@ -71,9 +71,6 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_page, container, false);
-        TextView textView = (TextView)view.findViewById(R.id.fg_textview);
-        textView.setText("Fragment #" + dataUrlStr);
-
 
             llLoading= (LinearLayout) view.findViewById(R.id.ll_loading);
             listData = new ArrayList<NewsListModel>();

@@ -22,7 +22,7 @@ import com.example.cjj.news.util.drecyclerviewadatper.DRecyclerViewScrollListene
 import java.util.ArrayList;
 import java.util.List;
 
-public class PicDetailActivity extends Activity {
+public class PicDetailActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private DRecyclerViewAdapter dRecyclerViewAdapter;
     private List<PicTypeDetailData.ResEntity.WallpaperEntity> listData;
@@ -31,11 +31,14 @@ public class PicDetailActivity extends Activity {
     private String typeName;//图片类别名称。
     private boolean isOver; //是否还有更多数据。
     PicDetailRVAdapter picDetailRVAdapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pic_detail);
 
+    @Override
+    protected int setLayoutResourceId() {
+        return R.layout.activity_pic_detail;
+    }
+
+    @Override
+    protected void initViews() {
         idStr=getIntent().getStringExtra("typeId");   //获取启动当前intent中的id值。
         typeName=getIntent().getStringExtra("typeName");
 

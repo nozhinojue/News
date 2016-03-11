@@ -30,16 +30,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final String TITLE_NEWS = "时事新闻";
     public static final String TITLE_MUSIC = "优美音乐";
 
+    /**
+     * 设置布局文件id
+     *
+     * @return
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //初始化Views
-        initViews();
+    protected int setLayoutResourceId() {
+        return R.layout.activity_main;
     }
 
-    //初始化Views
-    private void initViews() {
+    /**
+     * 初始化views
+     */
+    @Override
+    protected void initViews() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_main2A);
         dlMenu= (LinearLayout) findViewById(R.id.dl_menu_main2A);  //侧滑菜单
 
@@ -60,8 +65,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
         switchFragment(currentFragment, newsFragment, TITLE_NEWS);   //刚进入时，加载newsFragment
-
     }
+
 
     /**
      * 切换fragment

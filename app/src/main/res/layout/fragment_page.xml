@@ -5,12 +5,6 @@
     android:orientation="vertical"
     tools:context="com.example.cjj.mynews.PageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/fg_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
   <com.example.cjj.news.util.dpullrefresh_loadmore.DPullRefreshLayout
       android:id="@+id/fg_drl"
       android:layout_width="match_parent"
