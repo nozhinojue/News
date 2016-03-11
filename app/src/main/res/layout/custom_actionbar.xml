@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    >
+  　<ImageView
+    android:id="@+id/iv_actionbar"
+    android:layout_marginLeft="5dp"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:padding="5dp"
+    android:src="@mipmap/menu_icon"
+    android:background="@drawable/btn_bg_selector"
+    android:layout_gravity="center"
+    />
+    <TextView
+        android:id="@+id/tv_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="标题标题"
+        android:textColor="@color/titleText_color"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+</LinearLayout>
