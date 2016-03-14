@@ -10,12 +10,8 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -43,7 +39,7 @@ import java.util.List;
 
 
 
-public class MusicFragment extends Fragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+public class MusicFragment extends BaseFragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
    private RelativeLayout rlBg;
     private ImageView ivPlay;
     private ImageView ivPre;
@@ -69,11 +65,13 @@ public class MusicFragment extends Fragment implements View.OnClickListener, See
 
     private boolean sbIsChange=false; //seekBar是否改变标识
 
+    @Override
+    protected int setLayoutResourceId() {
+        return R.layout.fragment_music;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_music, container, false);
-
+    protected void initViews(View view) {
         rlBg= (RelativeLayout) view.findViewById(R.id.rl_bg_musicFg);//背景
         //透明度动画
         rlBgAnimator = ObjectAnimator.ofFloat(rlBg, "alpha", 0.4f, 0.9f);
@@ -96,14 +94,11 @@ public class MusicFragment extends Fragment implements View.OnClickListener, See
         ivPlay= (ImageView) view.findViewById(R.id.iv_play_musicFg);    //play按钮
         ivPre= (ImageView) view.findViewById(R.id.iv_pre_musicFg);      //上一首按钮
         ivNext= (ImageView) view.findViewById(R.id.iv_next_musicFg);    //下一首按钮
-
         ivPlay.setOnClickListener(this);
         ivPre.setOnClickListener(this);
         ivNext.setOnClickListener(this);
 
         initData();
-
-        return view;
     }
 
 

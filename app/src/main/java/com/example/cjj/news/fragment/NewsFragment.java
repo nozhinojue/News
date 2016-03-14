@@ -1,26 +1,26 @@
 package com.example.cjj.news.fragment;
 
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.cjj.news.R;
 import com.example.cjj.news.adapter.SimpleFragmentPagerAdapter;
 
 
-public class NewsFragment extends Fragment {
+public class NewsFragment extends BaseFragment {
     private SimpleFragmentPagerAdapter mPagerAdapter;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment、
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
+    protected int setLayoutResourceId() {
+        return R.layout.fragment_news;
+    }
+
+    @Override
+    protected void initViews(View view) {
         mPagerAdapter = new SimpleFragmentPagerAdapter(getChildFragmentManager(), getContext());
 
         mTabLayout = (TabLayout) view.findViewById(R.id.tabLayout_newsFg);
@@ -32,7 +32,6 @@ public class NewsFragment extends Fragment {
         mViewPager.setOffscreenPageLimit(4);    // 设置缓存多少个 Tab对应的 fragment
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        return view;
     }
 
 }

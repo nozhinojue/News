@@ -1,11 +1,8 @@
 package com.example.cjj.news.activity;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +60,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (newsFragment == null) {
             newsFragment = new NewsFragment();
         }
-
         switchFragment(currentFragment, newsFragment, TITLE_NEWS);   //刚进入时，加载newsFragment
     }
 

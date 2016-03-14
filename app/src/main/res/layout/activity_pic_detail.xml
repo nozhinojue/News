@@ -6,10 +6,27 @@
     tools:context="com.example.cjj.mynews.activity.PicDetailActivity"
     android:orientation="vertical">
     <include layout="@layout/custom_actionbar"></include>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_picDetailA"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/fl_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            >
+            <ProgressBar
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.ProgressBar"
+                />
+        </FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_picDetailA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
-    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

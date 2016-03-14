@@ -2,15 +2,11 @@ package com.example.cjj.news.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-
 
 import com.example.cjj.core.ActionCallbackListener;
 import com.example.cjj.core.AppActionImpl;
@@ -19,7 +15,6 @@ import com.example.cjj.news.R;
 import com.example.cjj.news.activity.PicDetailActivity;
 import com.example.cjj.news.adapter.PicFgRVAdapter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +22,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PicFragment extends Fragment implements PicFgRVAdapter.ItemOnClickListener {
+public class PicFragment extends BaseFragment implements PicFgRVAdapter.ItemOnClickListener {
     private RecyclerView mRecyclerView;
     private List<PicTypeData.ResEntity.CategoryEntity> lists;
     private PicFgRVAdapter picFgRVAdapter;
@@ -35,18 +30,18 @@ public class PicFragment extends Fragment implements PicFgRVAdapter.ItemOnClickL
         lists=new ArrayList<>();
     }
 
+    @Override
+    protected int setLayoutResourceId() {
+        return R.layout.fragment_pic;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pic, container, false);
+    protected void initViews(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_picFg);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         mRecyclerView.setLayoutManager(gridLayoutManager);  //设置网格布局，每行显示2个。
 
-
         getData();
-        return view;
     }
 
     //获取数据

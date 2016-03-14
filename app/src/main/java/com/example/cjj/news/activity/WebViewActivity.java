@@ -40,13 +40,6 @@ public class WebViewActivity extends Activity {
         TextView tvActionbar= (TextView) findViewById(R.id.tv_actionbar);
         tvActionbar.setText("内容");
         flLoading= (FrameLayout) findViewById(R.id.fl_loading); //framelayout进度条
-//        Button btnBack= (Button) findViewById(R.id.btn_back);
-//        btnBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                WebViewActivity.this.finish();
-//            }
-//        });
 
         webView = (WebView) findViewById(R.id.wv_webview);
         webView.getSettings().setJavaScriptEnabled(true);//设置使用够执行JS脚本

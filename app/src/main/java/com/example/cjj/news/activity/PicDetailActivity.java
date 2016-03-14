@@ -1,12 +1,11 @@
 package com.example.cjj.news.activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PicDetailActivity extends BaseActivity {
+    private FrameLayout ffLoading;
     private RecyclerView recyclerView;
     private DRecyclerViewAdapter dRecyclerViewAdapter;
     private List<PicTypeDetailData.ResEntity.WallpaperEntity> listData;
@@ -31,6 +31,8 @@ public class PicDetailActivity extends BaseActivity {
     private String typeName;//图片类别名称。
     private boolean isOver; //是否还有更多数据。
     PicDetailRVAdapter picDetailRVAdapter;
+    private boolean isFirst=true;
+    private View footView;
 
     @Override
     protected int setLayoutResourceId() {
@@ -41,6 +43,8 @@ public class PicDetailActivity extends BaseActivity {
     protected void initViews() {
         idStr=getIntent().getStringExtra("typeId");   //获取启动当前intent中的id值。
         typeName=getIntent().getStringExtra("typeName");
+
+        ffLoading= (FrameLayout)findViewById(R.id.fl_loading);
 
         ImageView imageView= (ImageView) findViewById(R.id.iv_actionbar);
         imageView.setImageResource(R.mipmap.back_icon2);
@@ -67,7 +71,8 @@ public class PicDetailActivity extends BaseActivity {
             }
         });
         dRecyclerViewAdapter = new DRecyclerViewAdapter(picDetailRVAdapter);
-        View footView = LayoutInflater.from(this).inflate(R.layout.item_foot,null); //底部foot的view
+        footView = LayoutInflater.from(this).inflate(R.layout.item_foot,null); //底部foot的view
+        footView.setVisibility(View.GONE);//一开始不可见,第一次数据加载完后显示。
         dRecyclerViewAdapter.addFooterView(footView);   //添加foot到adapter中
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);    //设置网格布局，每行显示2个。
@@ -109,7 +114,12 @@ public class PicDetailActivity extends BaseActivity {
         new AppActionImpl().getPicDetailData(idStr, skipNum, new ActionCallbackListener<PicTypeDetailData>() {
             @Override
             public void onSuccessed(PicTypeDetailData data) {
+                if(isFirst){
+                    ffLoading.setVisibility(View.GONE);
+                    isFirst=false;
+                }
                 setData(data);
+                footView.setVisibility(View.VISIBLE);
             }
 
             @Override
